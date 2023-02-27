@@ -1,10 +1,9 @@
 /// <reference path="..\..\..\node_modules\vendetta-types\defs.d.ts" />
 
-import { ReactNative as RN, url, invites } from "@vendetta/metro/common";
+import { ReactNative as RN } from "@vendetta/metro/common";
 import {ErrorBoundary, Forms} from "@vendetta/ui/components";
 import {getAssetIDByName} from "@vendetta/ui/assets";
-const { FormText, FormSection, FormSwitchRow, FormRow } = Forms;
-import settings from "@vendetta/storage";
+const { FormSection, FormSwitchRow, FormRow } = Forms;
 
 export default () => (
     <>
