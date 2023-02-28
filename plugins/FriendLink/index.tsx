@@ -9,7 +9,7 @@ import {getAssetByID} from "@vendetta/ui/assets";
 storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
 
-const UserProfileRelations = findByDisplayName("UserProfileRelations", false);
+const UserProfileRelations = findByProps("hideUserProfile", "showUserProfile", 'user');
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 
 
