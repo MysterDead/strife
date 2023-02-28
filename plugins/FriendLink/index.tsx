@@ -11,6 +11,7 @@ storage.friendsTabButton ??=false;
 
 const UserProfileRelations = findByProps("hideUserProfile", "showUserProfile", 'user');
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
+const Icon = findByDisplayName("Icon", false);
 
 
 const UnpatchRelations = after('default', UserProfileRelations, (ctx, component) => {
@@ -31,7 +32,7 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
     buttons.push((<Forms.FormRow
         label={'Send Friend Invite link'}
         onPress={buttonCallback}
-        trailing={<Forms.FormRow.Icon source={getAssetByID(105)} size={'medium'} disableColor={false}/>}
+        trailing={<Icon source={105} size={'medium'} disableColor={false}/>}
     />));
     // @ts-ignore
     ctx.result = [component]
