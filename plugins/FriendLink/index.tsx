@@ -19,7 +19,7 @@ const UnpatchRelations = after('default', UserProfileSection, (ctx, component) =
 
     if(children === undefined) return;
     console.log("MysterDead - I see child widget");
-    let buttons = children?.props?.children[0]?.props?.children;
+    let buttons = children?.props?.children[1]?.props?.children;
     console.log("MysterDead - Try to see buttons");
     if(buttons === undefined) return;
     console.log("MysterDead - I see buttons");
