@@ -23,7 +23,7 @@ const {
 
 const UnpatchRelations = after('default', UserProfileRelations, ([{hideUserProfile, showUserProfile, user}], res) => {
     let buttons = res?.props?.children?.find(e=> e.type.name === 'UserProfileSection')?.children;
-    const buttonIcon = getAssetIDByName("ic_select_manually_24px");
+    const buttonIcon = getAssetIDByName("toast_copy_link");
     const buttonCallback = () => {
         console.log("I was clicked!");
         // You can use LazyActionSheet's hideActionSheet function to close the action sheet.
