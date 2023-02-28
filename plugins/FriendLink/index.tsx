@@ -10,27 +10,30 @@ storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
 let unpatch;
 
-const UserProfileExperimentWrapper = findByDisplayName("UserProfileExperimentWrapper", false);
+const UserProfileExperimentWrapper = findByDisplayName("UserProfileActions", false);
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 
 
-const UnpatchRelations = after('default', UserProfileExperimentWrapper, ([{user}], res) => {
-    const UserProfileActions = findInReactTree(res.props.children, i => i.type && i.type.name === "UserProfileActions");
-    after("render", UserProfileActions.type.prototype, (_, { props: { children } }) => {
-        const buttonCallback = () => {
-            console.log("I was clicked!");
-            // You can use LazyActionSheet's hideActionSheet function to close the action sheet.
-            LazyActionSheet.hideActionSheet();
-        };
-        children.push((<Forms.FormRow
-            icon={105}
-            iconColor={'#b8b9bf'}
-            label={'Friend Link'}
-            onPress={buttonCallback}
-            accessibilityHint={'Send a friend link'}
-            textColor={'#1f7026'}
-        />));
-    })
+const UnpatchRelations = after('default', UserProfileExperimentWrapper, (ctx, component) => {
+    const { props } = component;
+    const { children } = props;
+    if(children === undefined) return;
+    const buttons = children?.props?.children[1]?.props?.children;
+    if(buttons === undefined) return;
+    const buttonCallback = () => {
+        console.log("I was clicked!");
+        LazyActionSheet.hideActionSheet();
+    };
+    buttons.push((<Forms.FormRow
+        icon={105}
+        iconColor={'#b8b9bf'}
+        label={'Friend Link'}
+        onPress={buttonCallback}
+        accessibilityHint={'Send a friend link'}
+        textColor={'#1f7026'}
+    />));
+    // @ts-ignore
+    ctx.result = [component]
 });
 
 export default {
