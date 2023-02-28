@@ -9,14 +9,15 @@ import {getAssetByID} from "@vendetta/ui/assets";
 storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
 
-const UserProfileRelations = findByDisplayName("UserProfileRelations", false);
+const UserProfileSection = findByDisplayName("UserProfileSection", false);
 const Icon = findByDisplayName("Icon", false);
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 
 
-const UnpatchRelations = after('default', UserProfileRelations, (ctx, component) => {
+const UnpatchRelations = after('default', UserProfileSection, (ctx, component) => {
     const { props } = component;
     const { children } = props;
+    console.log(props);
     console.log("test3 - Try to see children");
     // @ts-ignore
     if(children === undefined) return;
