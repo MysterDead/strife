@@ -4,7 +4,7 @@ import { storage } from "@vendetta/plugin";
 import {findByDisplayName, findByProps, } from "@vendetta/metro";
 import {after} from "@vendetta/patcher";
 import {Forms, General} from "@vendetta/ui/components";
-const UserProfileAction = findByDisplayName("s", false);
+import {getAssetByID} from "@vendetta/ui/assets";
 
 storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
@@ -25,7 +25,7 @@ const UnpatchRelations = after('default', UserProfileExperimentWrapper, (ctx, co
     };
     logger.log("MysterDead - test");
     buttons.push((<General.Button
-        icon={105}
+        icon={<Forms.FormIcon source={getAssetByID(105)}/>}
         iconColor={'#b8b9bf'}
         label={'Friend Link'}
         onPress={buttonCallback}
