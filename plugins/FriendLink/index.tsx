@@ -4,6 +4,7 @@ import { storage } from "@vendetta/plugin";
 import {findByDisplayName} from "@vendetta/metro";
 import {after} from "@vendetta/patcher";
 import {Forms} from "@vendetta/ui/components";
+import InviteButton from './components/InviteButton';
 
 storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
@@ -13,11 +14,10 @@ const UserProfile = findByDisplayName("UserProfileRelations");
 export default {
     onLoad: () => {
         logger.log("Hello world!");
-        unpatch = after("render", UserProfile, ([{ userNode }], res) => {
-            res.children.push(<Forms.FormText>TESTMODE</Forms.FormText>)
-        });
-        after("default", UserProfile, ([{ userNode }], res) => {
-            res.children.push(<Forms.FormText>TESTMODE</Forms.FormText>)
+        unpatch = after("default", UserProfile, ([{ userNode }], res) => {
+            res.props?.children?.push(<>
+                <InviteButton/>
+            </>);
         });
     },
     onUnload: () => {
