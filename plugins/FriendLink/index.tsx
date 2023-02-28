@@ -22,7 +22,6 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
     console.log("MysterDead - I see child widget");
     const buttons = children[0]?.props?.children;
     if(buttons === undefined) return;
-    if(buttons.length != 3) return;;
     try{
         console.log("ABC - Test 1 - Success - "+buttons[0].props.children.length);
     }catch (e){
