@@ -8,7 +8,6 @@ import {findInReactTree} from "@vendetta/utils";
 
 storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
-let unpatch;
 
 const UserProfileExperimentWrapper = findByDisplayName("UserProfileActions", false);
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
@@ -24,6 +23,7 @@ const UnpatchRelations = after('default', UserProfileExperimentWrapper, (ctx, co
         console.log("I was clicked!");
         LazyActionSheet.hideActionSheet();
     };
+    logger.log("MysterDead - test");
     buttons.push((<Forms.FormRow
         icon={105}
         iconColor={'#b8b9bf'}
@@ -39,11 +39,11 @@ const UnpatchRelations = after('default', UserProfileExperimentWrapper, (ctx, co
 export default {
     onLoad: () => {
         logger.log("Hello world!");
-        UnpatchRelations();
+
     },
     onUnload: () => {
         logger.log("Goodbye, world.");
-        unpatch();
+        UnpatchRelations();
     },
     settings: Settings,
 }
