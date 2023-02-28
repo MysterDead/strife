@@ -20,7 +20,27 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
     // @ts-ignore
     if(children === undefined) return;
     console.log("MysterDead - I see child widget");
-    const buttons = children?.props?.children?.props?.children?.props?.children;
+    const buttons = children;
+    try{
+        console.log("ABC - Test 1 - Success - "+buttons.length);
+    }catch (e){
+        console.log("ABC - Test 1 - Error - "+buttons.length);
+    }
+    try{
+        console.log("ABC - Test 2 - Success - "+buttons.props.children.length);
+    }catch (e){
+        console.log("ABC - Test 2 - Error - "+buttons.props.children.length);
+    }
+    try{
+        console.log("ABC - Test 3 - Success - "+buttons.props.children.props.children.length);
+    }catch (e){
+        console.log("ABC - Test 3 - Error - "+buttons.props.children.props.children.length);
+    }
+    try{
+        console.log("ABC - Test 4 - Success - "+buttons.props.children.props.children.props.children.length);
+    }catch (e){
+        console.log("ABC - Test 4 - Error - "+buttons.props.children.props.children.props.children.length);
+    }
     console.log("MysterDead - Try to see buttons length="+buttons.length);
     if(buttons === undefined) return;
     console.log("MysterDead - I see buttons");
