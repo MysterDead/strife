@@ -3,8 +3,7 @@ import Settings from "./components/Settings";
 import { storage } from "@vendetta/plugin";
 import {findByDisplayName, findByProps, } from "@vendetta/metro";
 import {after} from "@vendetta/patcher";
-import {Forms} from "@vendetta/ui/components";
-import {findInReactTree} from "@vendetta/utils";
+const { Pressable } = findByProps("s");
 
 storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
@@ -24,7 +23,7 @@ const UnpatchRelations = after('default', UserProfileExperimentWrapper, (ctx, co
         LazyActionSheet.hideActionSheet();
     };
     logger.log("MysterDead - test");
-    buttons.push((<Forms.FormRow
+    buttons.push((<Pressable
         icon={105}
         iconColor={'#b8b9bf'}
         label={'Friend Link'}
