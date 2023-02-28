@@ -14,15 +14,15 @@ const UserProfile = findByDisplayName("UserProfileRelations");
 export default {
     onLoad: () => {
         logger.log("Hello world!");
-        unpatch = after("default", UserProfile, ([{ userNode }], res) => {
-            res.props?.children?.push(<>
-                <InviteButton/>
-            </>);
-        });
+        // unpatch = after("default", UserProfile, ([{ userNode }], res) => {
+        //     res.props?.children?.push(<>
+        //         <InviteButton/>
+        //     </>);
+        // });
     },
     onUnload: () => {
         logger.log("Goodbye, world.");
-        unpatch();
+        // unpatch();
     },
     settings: Settings,
 }
