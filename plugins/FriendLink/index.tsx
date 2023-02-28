@@ -10,13 +10,15 @@ import {getAssetByID} from "@vendetta/ui/assets";
 storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
 
-const UserProfileRelations = findByDisplayName("UserProfileRelations", false);
+const UserProfileRelations = findByDisplayName("UserProfileSection", false);
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 
 
 const UnpatchRelations = after('default', UserProfileRelations, (ctx, component) => {
     const { props } = component;
     const { children } = props;
+    // @ts-ignore
+    if(ctx.showContainer !== null && ctx.showContainer != true)return;
     if(children === undefined) return;
     logger.log("MysterDead - I see child widget");
     const buttons = children?.props?.children[1]?.props?.children;
