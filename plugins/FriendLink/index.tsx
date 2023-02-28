@@ -13,13 +13,14 @@ const UserProfileRelations = findByDisplayName("UserProfileSection", false);
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 
 
+
 const UnpatchRelations = after('default', UserProfileRelations, (ctx, component) => {
     const { props } = component;
     const { children } = props;
     // @ts-ignore
     if(children === undefined) return;
     console.log("MysterDead - I see child widget");
-    const buttons = children[0].children;
+    const buttons = children[0].default.children;
     console.log("MysterDead - Try to see buttons");
     if(buttons === undefined) return;
     console.log("MysterDead - I see buttons");
