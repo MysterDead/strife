@@ -1,6 +1,6 @@
 /// <reference path="..\..\..\node_modules\vendetta-types\defs.d.ts" />
 
-import {find, findByProps} from "@vendetta/metro";
+import {find, findByDisplayName, findByProps} from "@vendetta/metro";
 import {getAssetIDByName} from "@vendetta/ui/assets";
 
 const {
@@ -11,7 +11,7 @@ const {
 } = findByProps("label", "onPress", "trailing");
 
 
-let ActionSheet = find((m) => m.default && m.default.render && m.default.render.name == "UserProfileRelations");
+let ActionSheet = findByDisplayName('UserProfileRelations');
 
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 
