@@ -10,7 +10,7 @@ storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
 let unpatch;
 
-const UserProfile = findByProps("UserProfile");
+const UserProfile = find(e=> e.default && e.default.render && e.default.render.name.startsWith('UserProfile'));
 
 export default {
     onLoad: () => {
