@@ -10,14 +10,14 @@ storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
 let unpatch;
 
-const UserProfileRelations = findByDisplayName("UserProfileRelations", false);
+const UserProfileActions = findByDisplayName("UserProfileActions", false);
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 const Icon = findByDisplayName("Icon");
 
 
-const UnpatchRelations = after('default', UserProfileRelations, ([{hideUserProfile, showUserProfile, user}], res) => {
+const UnpatchRelations = after('default', UserProfileActions, ([{user}], res) => {
     logger.log('TEST - '+JSON.stringify(user));
-    let buttons = res?.props?.children?.find(e=> e.type.name === 'UserProfileSection')?.children;
+    let buttons = res?.props?.children?.props?.children?.props?.children?.props.children?.props?.children;
     const buttonIcon = getAssetIDByName("toast_copy_link");
     const buttonCallback = () => {
         console.log("I was clicked!");
@@ -25,10 +25,14 @@ const UnpatchRelations = after('default', UserProfileRelations, ([{hideUserProfi
         LazyActionSheet.hideActionSheet();
     };
     buttons.push((<Forms.FormRow
-        trailing={<Icon source={buttonIcon} />}
-        label={'Send Friend Invite link'}
+        icon={105}
+        iconColor={'#b8b9bf'}
+        label={'Friend Link'}
         onPress={buttonCallback}
-    />))
+        accessibilityHint={'Send a friend link'}
+        textColor={'#1f7026'}
+    />));
+    return buttons;
 });
 
 export default {
