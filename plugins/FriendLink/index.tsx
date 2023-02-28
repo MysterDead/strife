@@ -20,7 +20,12 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
     // @ts-ignore
     if(children === undefined) return;
     console.log("MysterDead - I see child widget");
-    const buttons = children[1]?.props?.children;
+    let buttons;
+    try{
+        buttons = children[1]?.props?.children;
+    }catch (e) {
+        console.log("ABC - ERROR GIVEN STASH 1");
+    }
     if(buttons === undefined) return;
     try{
         console.log("ABC - Test 1 - Success - "+buttons[0].props.children.length);
