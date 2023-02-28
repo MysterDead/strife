@@ -28,12 +28,12 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
     }
     if(buttons === undefined) return;
     try{
-        console.log("ABC - Test 1 - Success - "+buttons[0].props.children[0].props.children.length+' - '+buttons[0].props.children[0].props);
+        console.log("ABC - Test 1 - Success - "+buttons[0].props.children[0].props.children.length+' - '+JSON.stringify(buttons[0].props.children[0].props));
     }catch (e){
         console.log("ABC - Test 1 - Error - Invalid length");
     }
     try{
-        console.log("ABC - Test 2 - Success - "+buttons[0].props.children[1].length);
+        console.log("ABC - Test 2 - Success - "+buttons[0].props.children[0].children[1].length);
     }catch (e){
         console.log("ABC - Test 2 - Error - Invalid length");
     }
