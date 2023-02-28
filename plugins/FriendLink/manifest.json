@@ -7,7 +7,7 @@
       "id": "309427040908476416"
     }
   ],
-  "main": "./index.ts",
+  "main": "./index.tsx",
   "vendetta": {
     "icon": "friends_toast_icon"
   }
