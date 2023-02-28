@@ -13,7 +13,7 @@ const UserProfileRelations = findByProps("hideUserProfile", "showUserProfile", '
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 
 
-const UnpatchRelations = after('showUserProfile', UserProfileRelations, (ctx, component) => {
+const UnpatchRelations = after('default', UserProfileRelations, (ctx, component) => {
     const { props } = component;
     const { children } = props;
     // @ts-ignore
