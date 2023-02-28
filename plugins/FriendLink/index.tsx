@@ -14,12 +14,6 @@ const UserProfileRelations = findByDisplayName("UserProfileRelations", false);
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 const Icon = findByDisplayName("Icon");
 
-const {
-    default: UserProfileRow,
-    label,
-    onPress,
-    trailing,
-} = findByProps("label", "onPress", "trailing");
 
 const UnpatchRelations = after('default', UserProfileRelations, ([{hideUserProfile, showUserProfile, user}], res) => {
     let buttons = res?.props?.children?.find(e=> e.type.name === 'UserProfileSection')?.children;
@@ -29,7 +23,7 @@ const UnpatchRelations = after('default', UserProfileRelations, ([{hideUserProfi
         // You can use LazyActionSheet's hideActionSheet function to close the action sheet.
         LazyActionSheet.hideActionSheet();
     };
-    buttons.push((<UserProfileRow
+    buttons.push((<Forms.FormRow
         trailing={<Icon source={buttonIcon} />}
         label={'Send Friend Invite link'}
         onPress={buttonCallback}
