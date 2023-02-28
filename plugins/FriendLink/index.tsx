@@ -1,4 +1,3 @@
-import { logger } from "@vendetta";
 import Settings from "./components/Settings";
 import { storage } from "@vendetta/plugin";
 import {findByDisplayName, findByProps} from "@vendetta/metro";
@@ -18,18 +17,17 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
     const { props } = component;
     const { children } = props;
     // @ts-ignore
-    if(ctx.showContainer !== null && ctx.showContainer != true)return;
     if(children === undefined) return;
-    logger.log("MysterDead - I see child widget");
-    const buttons = children?.props?.children[1]?.props?.children;
-    logger.log("MysterDead - Try to see buttons");
+    console.log("MysterDead - I see child widget");
+    const buttons = children?.props?.children;
+    console.log("MysterDead - Try to see buttons");
     if(buttons === undefined) return;
-    logger.log("MysterDead - I see buttons");
+    console.log("MysterDead - I see buttons");
     const buttonCallback = () => {
         console.log("I was clicked!");
         LazyActionSheet.hideActionSheet();
     };
-    logger.log("MysterDead - test");
+    console.log("MysterDead - test");
     buttons.push((<Forms.FormRow
         label={'Send Friend Invite link'}
         onPress={buttonCallback}
@@ -41,11 +39,11 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
 
 export default {
     onLoad: () => {
-        logger.log("Hello world!");
+        console.log("Hello world!");
 
     },
     onUnload: () => {
-        logger.log("Goodbye, world.");
+        console.log("Goodbye, world.");
         UnpatchRelations();
     },
     settings: Settings,
