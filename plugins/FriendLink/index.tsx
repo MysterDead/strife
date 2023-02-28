@@ -22,25 +22,16 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
     console.log("MysterDead - I see child widget");
     const buttons = children;
     try{
-        console.log("ABC - Test 1 - Success - "+buttons.length);
+        console.log("ABC - Test 1 - Success - "+buttons[0].props.children.length);
     }catch (e){
         console.log("ABC - Test 1 - Error - Invalid length");
     }
     try{
-        console.log("ABC - Test 2 - Success - "+buttons.props.children.length);
+        console.log("ABC - Test 2 - Success - "+buttons[1].props.children.length);
     }catch (e){
         console.log("ABC - Test 2 - Error - Invalid length");
     }
-    try{
-        console.log("ABC - Test 3 - Success - "+buttons.props.children.props.children.length);
-    }catch (e){
-        console.log("ABC - Test 3 - Error - Invalid length");
-    }
-    try{
-        console.log("ABC - Test 4 - Success - "+buttons.props.children.props.children.props.children.length);
-    }catch (e){
-        console.log("ABC - Test 4 - Error - Invalid length");
-    }
+
     if(buttons === undefined) return;
     console.log("MysterDead - I see buttons");
     const buttonCallback = () => {
