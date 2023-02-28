@@ -4,7 +4,6 @@ import { storage } from "@vendetta/plugin";
 import {find, findByDisplayName, findByProps} from "@vendetta/metro";
 import {after} from "@vendetta/patcher";
 import {Forms} from "@vendetta/ui/components";
-import InviteButton from './components/InviteButton';
 import {getAssetIDByName} from "@vendetta/ui/assets";
 
 storage.profileButton ??=false;
@@ -12,14 +11,15 @@ storage.friendsTabButton ??=false;
 let unpatch;
 
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
-const ChannelLongPressActionSheet = findByProps("UserDetails");
+const MessageLongPressActionSheet = findByProps("EmojiRow");
 const Icon = findByDisplayName("Icon");
 
 export default {
     onLoad: () => {
         logger.log("Hello world!");
         unpatch = // In onLoad or wherever you want to trigger the patch
-            after("default", ChannelLongPressActionSheet, ([{ user }], res) => {
+            // In onLoad or wherever you want to trigger the patch
+            after("default", MessageLongPressActionSheet, ([{ message }], res) => {
                 // You can access the message data from the message argument
 
                 // this is a array of ButtonRow that we will push to to add the custom button.
@@ -47,7 +47,7 @@ export default {
 
                 // Finally, we push our custom button into the list of custom buttons. You can also splice or unshift it, but you'll need to figure that out yourself :)
                 buttons.push(button);
-            })
+            });
     },
     onUnload: () => {
         logger.log("Goodbye, world.");
