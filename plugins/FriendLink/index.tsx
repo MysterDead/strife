@@ -24,22 +24,22 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
     try{
         console.log("ABC - Test 1 - Success - "+buttons.length);
     }catch (e){
-        console.log("ABC - Test 1 - Error - "+buttons.length);
+        console.log("ABC - Test 1 - Error - Invalid length");
     }
     try{
         console.log("ABC - Test 2 - Success - "+buttons.props.children.length);
     }catch (e){
-        console.log("ABC - Test 2 - Error - "+buttons.props.children.length);
+        console.log("ABC - Test 2 - Error - Invalid length");
     }
     try{
         console.log("ABC - Test 3 - Success - "+buttons.props.children.props.children.length);
     }catch (e){
-        console.log("ABC - Test 3 - Error - "+buttons.props.children.props.children.length);
+        console.log("ABC - Test 3 - Error - Invalid length");
     }
     try{
         console.log("ABC - Test 4 - Success - "+buttons.props.children.props.children.props.children.length);
     }catch (e){
-        console.log("ABC - Test 4 - Error - "+buttons.props.children.props.children.props.children.length);
+        console.log("ABC - Test 4 - Error - Invalid length");
     }
     if(buttons === undefined) return;
     console.log("MysterDead - I see buttons");
