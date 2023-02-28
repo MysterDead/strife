@@ -3,7 +3,7 @@ import Settings from "./components/Settings";
 import { storage } from "@vendetta/plugin";
 import {findByDisplayName, findByProps, } from "@vendetta/metro";
 import {after} from "@vendetta/patcher";
-const { Pressable } = findByProps("s");
+const { Pressable } = findByDisplayName("s");
 
 storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
