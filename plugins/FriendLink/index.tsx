@@ -16,6 +16,7 @@ const Icon = findByDisplayName("Icon");
 
 
 const UnpatchRelations = after('default', UserProfileRelations, ([{hideUserProfile, showUserProfile, user}], res) => {
+    logger.log('TEST - '+JSON.stringify(user));
     let buttons = res?.props?.children?.find(e=> e.type.name === 'UserProfileSection')?.children;
     const buttonIcon = getAssetIDByName("toast_copy_link");
     const buttonCallback = () => {
