@@ -10,11 +10,12 @@ storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
 let unpatch;
 
-const UserProfile = find((m) => m.default && m.default.render && m.default.render.name == "UserProfileRelations");
+const UserProfile = findByProps("UserProfile");
+
 export default {
     onLoad: () => {
         logger.log("Hello world!");
-        unpatch = after("showUserProfile", UserProfile, ([{ userNode }], res) => {
+        unpatch = after("default", UserProfile, ([{ userNode }], res) => {
             res.props?.children?.push(<>
                 <InviteButton/>
             </>);
