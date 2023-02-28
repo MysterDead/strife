@@ -41,7 +41,6 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
     }catch (e){
         console.log("ABC - Test 4 - Error - "+buttons.props.children.props.children.props.children.length);
     }
-    console.log("MysterDead - Try to see buttons length="+buttons.length);
     if(buttons === undefined) return;
     console.log("MysterDead - I see buttons");
     const buttonCallback = () => {
