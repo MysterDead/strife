@@ -33,7 +33,7 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
         console.log("ABC - Test 1 - Error - Invalid length");
     }
     try{
-        console.log("ABC - Test 2 - Success - "+buttons[0].props.children[2].props.children.length);
+        console.log("ABC - Test 2 - Success - "+buttons[0].props.children[1].props.children.length);
     }catch (e){
         console.log("ABC - Test 2 - Error - Invalid length");
     }
