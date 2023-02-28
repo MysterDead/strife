@@ -10,14 +10,15 @@ storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
 let unpatch;
 
-const UserProfile = find(e=> e && e.render && e.render.name.startsWith('UserProfile'));
+const ChannelLongPressActionSheet = findByDisplayName('ChannelLongPressActionSheetConnected')
 
 export default {
     onLoad: () => {
         logger.log("Hello world!");
-        unpatch = after("default", UserProfile, ([{ userNode }], res) => {
+        unpatch = after("default", ChannelLongPressActionSheet, ([{ channel }], res) => {
+            logger.log('TEST - '+JSON.stringify(channel));
             res.props?.children?.push(<>
-                <InviteButton/>
+                <Forms.FormText>TESATA</Forms.FormText>
             </>);
         });
     },
