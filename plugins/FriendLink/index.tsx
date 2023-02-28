@@ -22,18 +22,18 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
     console.log("MysterDead - I see child widget");
     let buttons;
     try{
-        buttons = children[1]?.props?.children;
+        buttons = children[0]?.props?.children;
     }catch (e) {
         console.log("ABC - ERROR GIVEN STASH 1");
     }
     if(buttons === undefined) return;
     try{
-        console.log("ABC - Test 1 - Success - "+buttons[0].props.children.length);
+        console.log("ABC - Test 1 - Success - "+buttons[0].props.children[0].props.children.length);
     }catch (e){
         console.log("ABC - Test 1 - Error - Invalid length");
     }
     try{
-        console.log("ABC - Test 2 - Success - "+buttons[1].props.children.length);
+        console.log("ABC - Test 2 - Success - "+buttons[0].props.children[2].props.children.length);
     }catch (e){
         console.log("ABC - Test 2 - Error - Invalid length");
     }
