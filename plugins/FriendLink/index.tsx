@@ -9,7 +9,8 @@ import {getAssetByID} from "@vendetta/ui/assets";
 storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
 
-const UserProfileExperimentWrapper = findByDisplayName("UserProfileActions", false);
+const UserProfileExperimentWrapper = findByDisplayName("UserProfileRelations", false);
+const Icon = findByDisplayName("Icon");
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 
 
@@ -24,13 +25,10 @@ const UnpatchRelations = after('default', UserProfileExperimentWrapper, (ctx, co
         LazyActionSheet.hideActionSheet();
     };
     logger.log("MysterDead - test");
-    buttons.push((<General.Button
-        icon={<Forms.FormIcon source={getAssetByID(105)}/>}
-        iconColor={'#b8b9bf'}
-        label={'Friend Link'}
+    buttons.push((<Forms.FormRow
+        label={'Send Friend Invite link'}
         onPress={buttonCallback}
-        accessibilityHint={'Send a friend link'}
-        textColor={'#1f7026'}
+        trailing={<Icon source={105} size={'medium'} disableColor={false}/>}
     />));
     // @ts-ignore
     ctx.result = [component]
