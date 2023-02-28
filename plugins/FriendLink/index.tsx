@@ -14,19 +14,19 @@ const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 
 
 const UnpatchRelations = after('default', UserProfileRelations, (ctx, component) => {
-    const { props } = component;
-    const { children } = props;
+    let { props } = component;
+    let { children } = props;
 
-    const relations = children?.props?.children;
+    let relations = children?.props?.children;
     console.log("MysterDead - Try to see relations button");
     // @ts-ignore
     if(relations === undefined) return;
     console.log("MysterDead - I see the relations");
-    const buttons = relations;
+    let buttons = relations;
     console.log("MysterDead - Try to see relations buttons");
     if(buttons === undefined) return;
     console.log("MysterDead - I see buttons");
-    const buttonCallback = () => {
+    let buttonCallback = () => {
         console.log("I was clicked!");
         LazyActionSheet.hideActionSheet();
     };
