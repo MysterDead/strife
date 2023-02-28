@@ -9,29 +9,31 @@ import {getAssetByID} from "@vendetta/ui/assets";
 storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
 
-const UserProfileRelations = findByDisplayName("UserProfileSection", false);
+const UserProfileRelations = findByDisplayName("UserProfileRelations", false);
+const Icon = findByDisplayName("Icon", false);
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 
 
 const UnpatchRelations = after('default', UserProfileRelations, (ctx, component) => {
     const { props } = component;
     const { children } = props;
+    console.log("test3 - Try to see children");
     // @ts-ignore
     if(children === undefined) return;
-    console.log("MysterDead - I see child widget");
-    const buttons = children;
-    console.log("MysterDead - Try to see buttons");
+    console.log("test3 - I see child widget");
+    const buttons = children[0]?.props.children;
+    console.log("test3 - Try to see buttons");
     if(buttons === undefined) return;
-    console.log("MysterDead - I see buttons");
+    console.log("test3 - I see buttons");
     const buttonCallback = () => {
-        console.log("I was clicked!");
+        console.log("test3 - I was clicked!");
         LazyActionSheet.hideActionSheet();
     };
-    console.log("MysterDead - test");
+    console.log("test3 - test");
     buttons.push((<Forms.FormRow
         label={'Send Friend Invite link'}
         onPress={buttonCallback}
-        trailing={<Forms.FormRow.Icon source={getAssetByID(105)} size={'medium'} disableColor={false}/>}
+        trailing={<Icon source={105} size={'medium'} disableColor={false}/>}
     />));
     // @ts-ignore
     ctx.result = [component]
