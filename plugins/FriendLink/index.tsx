@@ -1,10 +1,9 @@
 import { logger } from "@vendetta";
 import Settings from "./components/Settings";
 import { storage } from "@vendetta/plugin";
-import {findByDisplayName, findByProps} from "@vendetta/metro";
+import {findByDisplayName, findByProps, } from "@vendetta/metro";
 import {after} from "@vendetta/patcher";
 import {Forms} from "@vendetta/ui/components";
-import {getAssetIDByName} from "@vendetta/ui/assets";
 
 storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
@@ -12,13 +11,11 @@ let unpatch;
 
 const UserProfileActions = findByDisplayName("UserProfileActions", false);
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
-const Icon = findByDisplayName("Icon");
 
 
 const UnpatchRelations = after('default', UserProfileActions, ([{user}], res) => {
     logger.log('TEST - '+JSON.stringify(user));
-    let buttons = res?.props?.children?.props?.children?.props?.children?.props.children?.props?.children;
-    const buttonIcon = getAssetIDByName("toast_copy_link");
+    let buttons = res?.props?.children?.props?.children?.props?.children[1];
     const buttonCallback = () => {
         console.log("I was clicked!");
         // You can use LazyActionSheet's hideActionSheet function to close the action sheet.
@@ -32,7 +29,6 @@ const UnpatchRelations = after('default', UserProfileActions, ([{user}], res) =>
         accessibilityHint={'Send a friend link'}
         textColor={'#1f7026'}
     />));
-    return buttons;
 });
 
 export default {
