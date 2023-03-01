@@ -20,8 +20,6 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
     const { props } = component;
     const { children } = props;
     // @ts-ignore
-    if(children === undefined) return;
-    if(props.showContainer === undefined || props.showContainer === false) return;
     console.log("ABC - I see child widget");
     let buttons = children;
     if(buttons === undefined) return;
