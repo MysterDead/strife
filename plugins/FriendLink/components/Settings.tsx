@@ -34,7 +34,7 @@ export default () => {
                 <FormSwitchRow
                     label="Debug"
                     subLabel="Show debug logs prefixed by [FriendLink/INFO] - {message}"
-                    leading={<FormRow.Icon source={getAssetByID(538)} />}
+                    leading={<FormRow.Icon source={getAssetIDByName("ic_rulebook_16px")} />}
                     value={storage.debug}
                     onValueChange={(v) => {
                         storage.debug = v;
