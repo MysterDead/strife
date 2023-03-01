@@ -27,10 +27,12 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
         let buttons1 = children[0]?.props?.children[0]?.props?.children[0]?.props?.children;
         let buttons2 = children[0]?.props?.children[0]?.props?.children;
         let buttons3 = children[0]?.props?.children;
+        let buttons4 = children;
         //console.log(buttons); // not working
         //console.log(buttons1); // wywala dziwne rzeczy syntax error
         //console.log(buttons2); // wywala dziwne rzeczy syntax error
-         console.log(buttons3);
+         //console.log(buttons3); // moze to to ale sprawdze dalej
+         console.log(buttons4);
         if(buttons === undefined) return;
         try{
             console.log("ABC - Test 1 - Success - "+buttons[0].props.children[0].props.children.length+' - ');
