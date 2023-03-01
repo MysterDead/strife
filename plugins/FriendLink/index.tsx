@@ -40,7 +40,7 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
         LazyActionSheet.hideActionSheet();
     };
     console.log("MysterDead - test");
-    buttons.push((<UserProfileRow
+    buttons.push((<Forms.FormRow
         label={'Send Friend Invite link'}
         onPress={buttonCallback}
         trailing={<Forms.FormRow.Icon source={getAssetByID(105)} size={'medium'} disableColor={false}/>}
