@@ -24,6 +24,13 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
     console.log("ABC - I see child widget");
     try{
         let buttons = children[0]?.props?.children[0]?.props?.children[0]?.props?.children[0]?.props?.children;
+        let buttons1 = children[0]?.props?.children[0]?.props?.children[0]?.props?.children;
+        let buttons2 = children[0]?.props?.children[0]?.props?.children;
+        let buttons3 = children[0]?.props?.children;
+        console.log(buttons);
+        console.log(buttons1);
+        console.log(buttons2);
+        console.log(buttons3);
         if(buttons === undefined) return;
         try{
             console.log("ABC - Test 1 - Success - "+buttons[0].props.children[0].props.children.length+' - ');
