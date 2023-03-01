@@ -10,55 +10,57 @@ import {findInReactTree} from "@vendetta/utils";
 storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
 
-const UserProfileRelations = find(x => x.default?.render?.name == "UserProfileRelations");
+const UserProfileRelations = findByDisplayName('UserProfileRelations', false);
+const getRelations = findByDisplayName('UserProfileRelations', false);
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 
-const UnpatchRelations = after('render', UserProfileRelations, (ctx, component) => {
-    console.log("ABC - CTX - I see the element");
-    // const { props } = component;
-    // const { child } = props;
-    // // @ts-ignore
-    // if(child === undefined) {
-    //     console.log("ABC - Not see chukdreb");
-    //     return;
-    // }
-    // const Overview = findInReactTree(child.props.child, i => i.type && i.type.name === "UserProfileRelations");
-    // let buttons = Overview.child.props.children[1].props.children.props.children;
-    // if(buttons === undefined){
-    //     console.log("ABC - Not see buttons");
-    //     return;
-    // }
-    // console.log("ABC - See buttons");
-    // let buttons;
-    // try{
-    //     buttons = children[0]?.props?.children;
-    // }catch (e) {
-    //     console.log("ABC - ERROR GIVEN STASH 1");
-    // }
-    // if(buttons === undefined) return;
-
-    // console.log("MysterDead - I see buttons");
-    // const buttonCallback = () => {
-    //     console.log("I was clicked!");
-    //     LazyActionSheet.hideActionSheet();
-    // };
-    // console.log("MysterDead - test");
-    // buttons.push((<Forms.FormRow
-    //     label={'Send Friend Invite link'}
-    //     onPress={buttonCallback}
-    //     trailing={<Forms.FormRow.Icon source={getAssetByID(105)} size={'medium'} disableColor={false}/>}
-    // />));
-    // @ts-ignore
-    ctx.result = [component]
-});
+// const UnpatchRelations = after('render', UserProfileRelations, (ctx, component) => {
+//     console.log("ABC - CTX - I see the element");
+//     // const { props } = component;
+//     // const { child } = props;
+//     // // @ts-ignore
+//     // if(child === undefined) {
+//     //     console.log("ABC - Not see chukdreb");
+//     //     return;
+//     // }
+//     // const Overview = findInReactTree(child.props.child, i => i.type && i.type.name === "UserProfileRelations");
+//     // let buttons = Overview.child.props.children[1].props.children.props.children;
+//     // if(buttons === undefined){
+//     //     console.log("ABC - Not see buttons");
+//     //     return;
+//     // }
+//     // console.log("ABC - See buttons");
+//     // let buttons;
+//     // try{
+//     //     buttons = children[0]?.props?.children;
+//     // }catch (e) {
+//     //     console.log("ABC - ERROR GIVEN STASH 1");
+//     // }
+//     // if(buttons === undefined) return;
+//
+//     // console.log("MysterDead - I see buttons");
+//     // const buttonCallback = () => {
+//     //     console.log("I was clicked!");
+//     //     LazyActionSheet.hideActionSheet();
+//     // };
+//     // console.log("MysterDead - test");
+//     // buttons.push((<Forms.FormRow
+//     //     label={'Send Friend Invite link'}
+//     //     onPress={buttonCallback}
+//     //     trailing={<Forms.FormRow.Icon source={getAssetByID(105)} size={'medium'} disableColor={false}/>}
+//     // />));
+//     // @ts-ignore
+//     ctx.result = [component]
+// });
 export default {
     onLoad: () => {
         console.log("Hello world!");
-
+        console.log(getRelations);
+        console.log(UserProfileRelations);
     },
     onUnload: () => {
         console.log("Goodbye, world.");
-        UnpatchRelations();
+        // UnpatchRelations();
     },
     settings: Settings,
 }
