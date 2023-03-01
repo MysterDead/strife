@@ -13,8 +13,6 @@ storage.friendsTabButton ??=false;
 const UserProfileRelations = find(x => x.default?.render?.name == "UserProfileRelations").default.render;
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 
-
-
 const UnpatchRelations = after('default', UserProfileRelations, (ctx, component) => {
     console.log("ABC - CTX - I see the element");
     // const { props } = component;
