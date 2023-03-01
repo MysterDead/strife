@@ -10,7 +10,7 @@ import {findInReactTree} from "@vendetta/utils";
 storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
 
-const UserProfileRelations = findByDisplayName("UserProfileSection", false);
+const UserProfileRelations = findByDisplayName("UserProfileRelations", false);
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 const Icon = findByDisplayName("Icon")
 const UserProfileRow = findByDisplayName("UserProfileRow")
