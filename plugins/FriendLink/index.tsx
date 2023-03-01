@@ -22,32 +22,36 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
     const { children } = props;
     // @ts-ignore
     console.log("ABC - I see child widget");
-    let buttons = children[0]?.props?.children[0]?.props?.children[0]?.props?.children!;
-    if(buttons === undefined) return;
     try{
-        console.log("ABC - Test 1 - Success - "+buttons[0].props.children[0].props.children.length+' - ');
-    }catch (e){
-        console.log("ABC - Test 1 - Error - Invalid length");
-    }
-    try{
-        console.log("ABC - Test 2 - Success - "+buttons[0].props.children[0].children[1].length);
-    }catch (e){
-        console.log("ABC - Test 2 - Error - Invalid length");
-    }
+        let buttons = children[0]?.props?.children[1].props?.children;
+        if(buttons === undefined) return;
+        try{
+            console.log("ABC - Test 1 - Success - "+buttons[0].props.children[0].props.children.length+' - ');
+        }catch (e){
+            console.log("ABC - Test 1 - Error - Invalid length");
+        }
+        try{
+            console.log("ABC - Test 2 - Success - "+buttons[0].props.children[0].children[1].length);
+        }catch (e){
+            console.log("ABC - Test 2 - Error - Invalid length");
+        }
 
-    console.log("MysterDead - I see buttons");
-    const buttonCallback = () => {
-        console.log("I was clicked!");
-        LazyActionSheet.hideActionSheet();
-    };
-    console.log("MysterDead - test");
-    buttons.push((<UserProfileRow
-        label={'Send Friend Invite link'}
-        onPress={buttonCallback}
-        trailing={<Icon source={getAssetByID(105)} size={'medium'} disableColor={false}/>}
-    />));
-    // @ts-ignore
-    ctx.result = [component]
+        console.log("MysterDead - I see buttons");
+        const buttonCallback = () => {
+            console.log("I was clicked!");
+            LazyActionSheet.hideActionSheet();
+        };
+        console.log("MysterDead - test");
+        buttons.push((<UserProfileRow
+            label={'Send Friend Invite link'}
+            onPress={buttonCallback}
+            trailing={<Icon source={getAssetByID(105)} size={'medium'} disableColor={false}/>}
+        />));
+        // @ts-ignore
+        ctx.result = [component]
+    }catch (d){
+
+    }
 });
 export default {
     onLoad: () => {
