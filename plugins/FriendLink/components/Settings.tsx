@@ -2,7 +2,7 @@
 
 import { ReactNative as RN } from "@vendetta/metro/common";
 import {ErrorBoundary, Forms} from "@vendetta/ui/components";
-import {getAssetIDByName} from "@vendetta/ui/assets";
+import {getAssetByID, getAssetIDByName} from "@vendetta/ui/assets";
 const { FormSection, FormSwitchRow, FormRow } = Forms;
 import { storage } from "@vendetta/plugin";
 import {useProxy} from "@vendetta/storage";
@@ -27,6 +27,17 @@ export default () => {
                     value={storage.friendsTabButton}
                     onValueChange={(v) => {
                         storage.friendsTabButton = v;
+                    }}
+                />
+            </FormSection>
+            <FormSection title="Dev" titleStyleType="no_border">
+                <FormSwitchRow
+                    label="Debug"
+                    subLabel="Show debug logs prefixed by [FriendLink/INFO] - {message}"
+                    leading={<FormRow.Icon source={getAssetByID(538)} />}
+                    value={storage.debug}
+                    onValueChange={(v) => {
+                        storage.debug = v;
                     }}
                 />
             </FormSection>

@@ -9,6 +9,7 @@ import {findInReactTree} from "@vendetta/utils";
 
 storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
+storage.debug ??=false;
 
 const UserProfileRelations = findByDisplayName("UserProfileSection", false);
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
@@ -25,17 +26,19 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
         if(children[1] !=null && children[1] !=undefined) {
             let buttons = children[1]?.props?.children;
             if(buttons === undefined) return;
-            // const check = buttons.filter(a=> a.props.label === i18n.Messages['INVITE_TO_SERVER']);
-            // if(check === undefined) return;
-            // if(check.length === 0) return;
-            console.log(buttons[0]);
+            const guildButton = buttons[0]?.props;
+            if(guildButton === undefined || guildButton?.props === undefined) return;
+            const check = guildButton?.props?.label === i18n.Messages['MUTUAL_GUILDS'];
+            if (!check) return;
+            if (!storage.profileButton) return;
+            console.log(buttons[1]);
             const buttonCallback = () => {
                 LazyActionSheet.hideActionSheet();
             };
             buttons.push((<UserProfileRow
                 label={'Send Friend Invite link'}
                 onPress={buttonCallback}
-                trailing={<Icon source={105} size={'medium'} disableColor={false}/>}
+                trailing={<Icon source={105} size={'medium'} disableColor={true}/>}
             />));
         }
     }catch (e){
