@@ -20,20 +20,21 @@ const UserProfileRow = findByDisplayName("UserProfileRow")
 const UnpatchRelations = after('default', UserProfileRelations, (ctx, component) => {
     const { props } = component;
     const { children } = props;
-    if(children.length !=2) return;
-    let buttons = children[1]?.props?.children;
-    const buttonCallback = () => {
-        console.log("I was clicked!");
-        LazyActionSheet.hideActionSheet();
-    };
-    console.log("MysterDead - test");
-    buttons.push((<UserProfileRow
-        label={'Send Friend Invite link'}
-        onPress={buttonCallback}
-        trailing={<Icon source={getAssetByID(105)} size={'medium'} disableColor={false}/>}
-    />));
-    // @ts-ignore
-    ctx.result = [component]
+    if(children.length === 2) {
+        let buttons = children[1]?.props?.children;
+        const buttonCallback = () => {
+            console.log("I was clicked!");
+            LazyActionSheet.hideActionSheet();
+        };
+        console.log("MysterDead - test");
+        buttons.push((<UserProfileRow
+            label={'Send Friend Invite link'}
+            onPress={buttonCallback}
+            trailing={<Icon source={getAssetByID(105)} size={'medium'} disableColor={false}/>}
+        />));
+        // @ts-ignore
+        ctx.result = [component]
+    }
 });
 export default {
     onLoad: () => {
