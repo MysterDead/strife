@@ -25,9 +25,9 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
         if(children[1] !=null && children[1] !=undefined) {
             let buttons = children[1]?.props?.children;
             if(buttons === undefined) return;
-            const check = buttons.filter(a=> a.props.label === i18n.Messages['INVITE_TO_SERVER']);
-            if(check === undefined) return;
-            if(check.length === 0) return;
+            // const check = buttons.filter(a=> a.props.label === i18n.Messages['INVITE_TO_SERVER']);
+            // if(check === undefined) return;
+            // if(check.length === 0) return;
             console.log(buttons[0]);
             const buttonCallback = () => {
                 LazyActionSheet.hideActionSheet();
@@ -39,7 +39,7 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
             />));
         }
     }catch (e){
-        console.log('Error while rendering friend invite button in user relations');
+        console.log('Error while rendering friend invite button in user relations error='+e.toString());
     }
     // @ts-ignore
     ctx.result = [component]
