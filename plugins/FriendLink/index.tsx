@@ -10,7 +10,7 @@ import {findInReactTree} from "@vendetta/utils";
 storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
 
-const UserProfileRelations = find(x => x.default?.render?.name == "UserProfileRelations").default;
+const UserProfileRelations = find(x => x.default?.render?.name == "UserProfileRelations");
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 
 const UnpatchRelations = after('render', UserProfileRelations, (ctx, component) => {
