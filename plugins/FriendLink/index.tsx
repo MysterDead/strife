@@ -5,22 +5,32 @@ import {ReactNative as RN } from '@vendetta/metro/common';
 import {after} from "@vendetta/patcher";
 import {Forms, General} from "@vendetta/ui/components";
 import {getAssetByID} from "@vendetta/ui/assets";
+import {findInReactTree} from "@vendetta/utils";
 
 storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
 
-const UserProfileRelations = findByDisplayName("UserProfileRelations", false);
+const UserProfileExperimentWrapper = findByDisplayName("UserProfileExperimentWrapper", false);
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 
 
 
-const UnpatchRelations = after('default', UserProfileRelations.type.prototype, (ctx, component) => {
+const UnpatchRelations = after('default', UserProfileExperimentWrapper, (ctx, component) => {
     console.log("ABC - CTX - I see the element");
     const { props } = component;
-    const { children } = props;
+    const { child } = props;
     // @ts-ignore
-    if(children === undefined) return;
-    // console.log("MysterDead - I see child widget");
+    if(child === undefined) {
+        console.log("ABC - Not see chukdreb");
+        return;
+    }
+    const Overview = findInReactTree(child.props.child, i => i.type && i.type.name === "UserProfileRelations");
+    let buttons = Overview.child.props.children[1].props.children.props.children;
+    if(buttons === undefined){
+        console.log("ABC - Not see buttons");
+        return;
+    }
+    console.log("ABC - See buttons");
     // let buttons;
     // try{
     //     buttons = children[0]?.props?.children;
@@ -28,26 +38,6 @@ const UnpatchRelations = after('default', UserProfileRelations.type.prototype, (
     //     console.log("ABC - ERROR GIVEN STASH 1");
     // }
     // if(buttons === undefined) return;
-    try{
-        console.log("ABC - Test 0 - Success - "+children[0].length);
-    }catch (e){
-        console.log("ABC - Test 0 - Error - Invalid length");
-    }
-    try{
-        console.log("ABC - Test 1 - Success - "+children[0].props.children.length);
-    }catch (e){
-        console.log("ABC - Test 1 - Error - Invalid length");
-    }
-    try{
-        console.log("ABC - Test 2 - Success - "+children[0].props.children[0].props.children.length);
-    }catch (e){
-        console.log("ABC - Test 2 - Error - Invalid length");
-    }
-    try{
-        console.log("ABC - Test 3 - Success - "+children[0].props.children[0].props.children[0].props.children.length);
-    }catch (e){
-        console.log("ABC - Test 3 - Error - Invalid length");
-    }
 
     // console.log("MysterDead - I see buttons");
     // const buttonCallback = () => {
