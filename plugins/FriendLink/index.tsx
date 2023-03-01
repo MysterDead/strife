@@ -20,47 +20,20 @@ const UserProfileRow = findByDisplayName("UserProfileRow")
 const UnpatchRelations = after('default', UserProfileRelations, (ctx, component) => {
     const { props } = component;
     const { children } = props;
+    if(children.length !=2) return;
+    let buttons = children[1]?.props?.children;
+    const buttonCallback = () => {
+        console.log("I was clicked!");
+        LazyActionSheet.hideActionSheet();
+    };
+    console.log("MysterDead - test");
+    buttons.push((<UserProfileRow
+        label={'Send Friend Invite link'}
+        onPress={buttonCallback}
+        trailing={<Icon source={getAssetByID(105)} size={'medium'} disableColor={false}/>}
+    />));
     // @ts-ignore
-    console.log("ABC - I see child widget");
-    try{
-        let buttons = children[0]?.props?.children[0]?.props?.children[0]?.props?.children[0]?.props?.children;
-        let buttons1 = children[0]?.props?.children[0]?.props?.children[0]?.props?.children;
-        let buttons2 = children[0]?.props?.children[0]?.props?.children;
-        let buttons3 = children[0]?.props?.children;
-        let buttons4 = children;
-        //console.log(buttons); // not working
-        //console.log(buttons1); // wywala dziwne rzeczy syntax error
-        //console.log(buttons2); // wywala dziwne rzeczy syntax error
-         //console.log(buttons3); // moze to to ale sprawdze dalej
-         console.log(buttons4);
-        if(buttons === undefined) return;
-        try{
-            console.log("ABC - Test 1 - Success - "+buttons[0].props.children[0].props.children.length+' - ');
-        }catch (e){
-            console.log("ABC - Test 1 - Error - Invalid length");
-        }
-        try{
-            console.log("ABC - Test 2 - Success - "+buttons[0].props.children[0].children[1].length);
-        }catch (e){
-            console.log("ABC - Test 2 - Error - Invalid length");
-        }
-
-        console.log("MysterDead - I see buttons");
-        const buttonCallback = () => {
-            console.log("I was clicked!");
-            LazyActionSheet.hideActionSheet();
-        };
-        console.log("MysterDead - test");
-        buttons.push((<UserProfileRow
-            label={'Send Friend Invite link'}
-            onPress={buttonCallback}
-            trailing={<Icon source={getAssetByID(105)} size={'medium'} disableColor={false}/>}
-        />));
-        // @ts-ignore
-        ctx.result = [component]
-    }catch (d){
-
-    }
+    ctx.result = [component]
 });
 export default {
     onLoad: () => {
