@@ -25,13 +25,24 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
     try {
         if(children[1] !=null && children[1] !=undefined) {
             let buttons = children[1]?.props?.children;
+            console.log('FL - CHECKING')
             if(buttons === undefined) return;
+            console.log('FL - SUCCESS')
+            console.log('FL - CHECKING MUTUAL GUILDS')
             const guildButton = buttons[0]?.props;
             if(guildButton === undefined || guildButton?.props === undefined) return;
+            console.log('FL - MUTUAL GUILDS SUCCESS')
+            console.log('FL - CHECKING MUTUAL GUILDS LABEL')
             const check = guildButton?.props?.label === i18n.Messages['MUTUAL_GUILDS'];
+            console.log('FL - LABEL CHECKED')
             if (!check) return;
+            console.log('FL - LABEL IS MUTUAL')
+            console.log('FL - CHECKING STORAGE PROPS')
             if (!storage.profileButton) return;
+            console.log('FL - STORAGE PROPS SUCCESS')
+            console.log('FL - TRYING PRINT BUTTON INDEX=1')
             console.log(buttons[1]);
+            console.log('FL - PRINTED')
             const buttonCallback = () => {
                 LazyActionSheet.hideActionSheet();
             };
