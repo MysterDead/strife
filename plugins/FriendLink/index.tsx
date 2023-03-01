@@ -22,28 +22,24 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
     const { children } = props;
     if(children === undefined) return;
     try {
-        console.log('LOL - TRY 1')
         if(children[1] !=null && children[1] !=undefined) {
-            console.log('LOL - MAYBE 2')
             let buttons = children[1]?.props?.children;
-            console.log('LOL - OKEY 3')
             if(buttons === undefined) return;
-            console.log('LOL - UWU 4')
-            console.log(buttons);
+            const check = buttons.filter(a=> a.props.label === i18n.Messages['INVITE_TO_SERVER']);
+            if(check === undefined) return;
+            if(check.length === 0) return;
+            console.log(buttons[0]);
             const buttonCallback = () => {
-                console.log("I was clicked!");
                 LazyActionSheet.hideActionSheet();
             };
-            console.log('LOL - BUTTON 5')
             buttons.push((<UserProfileRow
                 label={'Send Friend Invite link'}
                 onPress={buttonCallback}
-                trailing={<Forms.FormIcon source={getAssetByID(105)}/>}
+                trailing={<Icon source={105} size={'medium'} disableColor={false}/>}
             />));
-            console.log('LOL - PUSHED 6' + i18n.Messages['USER_'])
         }
     }catch (e){
-        console.log('LOL - ERROR')
+        console.log('Error while rendering friend invite button in user relations');
     }
     // @ts-ignore
     ctx.result = [component]
