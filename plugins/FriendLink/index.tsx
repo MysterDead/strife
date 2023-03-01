@@ -1,7 +1,7 @@
 import Settings from "./components/Settings";
 import { storage } from "@vendetta/plugin";
 import {find, findByDisplayName, findByProps} from "@vendetta/metro";
-import {ReactNative as RN } from '@vendetta/metro/common';
+import {i18n, ReactNative as RN} from '@vendetta/metro/common';
 import {after} from "@vendetta/patcher";
 import {Forms, General} from "@vendetta/ui/components";
 import {getAssetByID} from "@vendetta/ui/assets";
@@ -29,6 +29,7 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
             console.log('LOL - OKEY 3')
             if(buttons === undefined) return;
             console.log('LOL - UWU 4')
+            console.log(buttons);
             const buttonCallback = () => {
                 console.log("I was clicked!");
                 LazyActionSheet.hideActionSheet();
@@ -37,8 +38,9 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
             buttons.push((<UserProfileRow
                 label={'Send Friend Invite link'}
                 onPress={buttonCallback}
+                trailing={<Forms.FormIcon source={getAssetByID(105)}/>}
             />));
-            console.log('LOL - PUSHED 6')
+            console.log('LOL - PUSHED 6' + i18n.Messages['USER_'])
         }
     }catch (e){
         console.log('LOL - ERROR')
