@@ -23,6 +23,7 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
     if(children === undefined) return;
     if(children.length === 2) {
         let buttons = children[1]?.props?.children;
+        if(buttons === undefined) return;
         const buttonCallback = () => {
             console.log("I was clicked!");
             LazyActionSheet.hideActionSheet();
