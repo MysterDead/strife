@@ -14,7 +14,7 @@ const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 
 
 
-const UnpatchRelations = after('showUserProfile', UserProfileRelations, (ctx, component) => {
+const UnpatchRelations = after('UserProfileSection', UserProfileRelations, (ctx, component) => {
     console.log("ABC - CTX - I see the element");
     const { props } = component;
     const { children } = props;
@@ -29,14 +29,24 @@ const UnpatchRelations = after('showUserProfile', UserProfileRelations, (ctx, co
     // }
     // if(buttons === undefined) return;
     try{
-        console.log("ABC - Test 1 - Success - "+children[0].props.children[0].props.children.length);
+        console.log("ABC - Test 0 - Success - "+children[0].length);
+    }catch (e){
+        console.log("ABC - Test 0 - Error - Invalid length");
+    }
+    try{
+        console.log("ABC - Test 1 - Success - "+children[0].props.children.length);
     }catch (e){
         console.log("ABC - Test 1 - Error - Invalid length");
     }
     try{
-        console.log("ABC - Test 2 - Success - "+children[0].props.children[0].props.children[0].props.children.length);
+        console.log("ABC - Test 2 - Success - "+children[0].props.children[0].props.children.length);
     }catch (e){
         console.log("ABC - Test 2 - Error - Invalid length");
+    }
+    try{
+        console.log("ABC - Test 3 - Success - "+children[0].props.children[0].props.children[0].props.children.length);
+    }catch (e){
+        console.log("ABC - Test 3 - Error - Invalid length");
     }
 
     // console.log("MysterDead - I see buttons");
