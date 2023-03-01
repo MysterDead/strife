@@ -21,22 +21,30 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
     const { props } = component;
     const { children } = props;
     if(children === undefined) return;
-    if(children.length === 2) {
-        let buttons = children[1]?.props?.children;
-        if(buttons === undefined) return;
-        const buttonCallback = () => {
-            console.log("I was clicked!");
-            LazyActionSheet.hideActionSheet();
-        };
-        console.log("MysterDead - test");
-        buttons.push((<UserProfileRow
-            label={'Send Friend Invite link'}
-            onPress={buttonCallback}
-            trailing={<Icon source={getAssetByID(105)} size={'medium'} disableColor={false}/>}
-        />));
-        // @ts-ignore
-        ctx.result = [component]
+    try {
+        console.log('LOL - TRY 1')
+        if(children[1] !=null && children[1] !=undefined) {
+            console.log('LOL - MAYBE 2')
+            let buttons = children[1]?.props?.children;
+            console.log('LOL - OKEY 3')
+            if(buttons === undefined) return;
+            console.log('LOL - UWU 4')
+            const buttonCallback = () => {
+                console.log("I was clicked!");
+                LazyActionSheet.hideActionSheet();
+            };
+            console.log('LOL - BUTTON 5')
+            buttons.push((<UserProfileRow
+                label={'Send Friend Invite link'}
+                onPress={buttonCallback}
+            />));
+            console.log('LOL - PUSHED 6')
+        }
+    }catch (e){
+        console.log('LOL - ERROR')
     }
+    // @ts-ignore
+    ctx.result = [component]
 });
 export default {
     onLoad: () => {
