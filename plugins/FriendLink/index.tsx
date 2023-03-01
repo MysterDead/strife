@@ -10,7 +10,7 @@ import {findInReactTree} from "@vendetta/utils";
 storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
 
-const UserProfileRelations = findByDisplayName("UserProfileRelations", false);
+const UserProfileRelations = findByDisplayName("UserProfileSection", false);
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 const Icon = findByDisplayName("Icon")
 const UserProfileRow = findByDisplayName("UserProfileRow")
@@ -23,7 +23,7 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
     // @ts-ignore
     console.log("ABC - I see child widget");
     try{
-        let buttons = children?.props?.children;
+        let buttons = children[0]?.props?.children[0]?.props?.children[0]?.props?.children[0]?.props?.children;
         if(buttons === undefined) return;
         try{
             console.log("ABC - Test 1 - Success - "+buttons[0].props.children[0].props.children.length+' - ');
