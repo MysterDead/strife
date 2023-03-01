@@ -12,7 +12,8 @@ storage.friendsTabButton ??=false;
 
 const UserProfileRelations = findByDisplayName("UserProfileSection", false);
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
-const {UserProfileRow} = findByDisplayName('UserProfileRow')
+const Icon = findByDisplayName("Icon")
+const UserProfileRow = findByDisplayName("UserProfileRow")
 
 
 
@@ -40,10 +41,10 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
         LazyActionSheet.hideActionSheet();
     };
     console.log("MysterDead - test");
-    buttons.push((<Forms.FormRow
+    buttons.push((<UserProfileRow
         label={'Send Friend Invite link'}
         onPress={buttonCallback}
-        trailing={<Forms.FormRow.Icon source={getAssetByID(105)} size={'medium'} disableColor={false}/>}
+        trailing={<Icon source={getAssetByID(105)} size={'medium'} disableColor={false}/>}
     />));
     // @ts-ignore
     ctx.result = [component]
