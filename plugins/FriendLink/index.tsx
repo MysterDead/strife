@@ -1,6 +1,6 @@
 import Settings from "./components/Settings";
 import { storage } from "@vendetta/plugin";
-import {findByDisplayName, findByProps} from "@vendetta/metro";
+import {find, findByDisplayName, findByProps} from "@vendetta/metro";
 import {ReactNative as RN } from '@vendetta/metro/common';
 import {after} from "@vendetta/patcher";
 import {Forms, General} from "@vendetta/ui/components";
@@ -10,7 +10,7 @@ import {findInReactTree} from "@vendetta/utils";
 storage.profileButton ??=false;
 storage.friendsTabButton ??=false;
 
-const UserProfileRelations = findByDisplayName("UserProfileRelations", false);
+const UserProfileRelations = find(x => x.default?.render?.name == "UserProfileRelations").default.render;
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 
 
