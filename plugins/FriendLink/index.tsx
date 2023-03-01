@@ -23,7 +23,7 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
     console.log("MysterDead - I see child widget");
     let buttons;
     try{
-        buttons = children[0]?.props?.children[1].props;
+        buttons = children[0]?.props?.children[1].props.children;
     }catch (e) {
         console.log("ABC - ERROR GIVEN STASH 1");
     }
