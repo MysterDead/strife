@@ -20,6 +20,7 @@ const UserProfileRow = findByDisplayName("UserProfileRow")
 const UnpatchRelations = after('default', UserProfileRelations, (ctx, component) => {
     const { props } = component;
     const { children } = props;
+    if(children === undefined) return;
     if(children.length === 2) {
         let buttons = children[1]?.props?.children;
         const buttonCallback = () => {
