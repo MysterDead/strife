@@ -14,7 +14,7 @@ const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 
 
 
-const UnpatchRelations = after('UserProfileSection', UserProfileRelations, (ctx, component) => {
+const UnpatchRelations = after('default', UserProfileRelations.type.prototype, (ctx, component) => {
     console.log("ABC - CTX - I see the element");
     const { props } = component;
     const { children } = props;
