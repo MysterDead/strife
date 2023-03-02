@@ -34,6 +34,7 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
             console.log('FL - MUTUAL GUILDS SUCCESS')
             console.log('FL - CHECKING MUTUAL GUILDS LABEL')
             const check = guildButton?.label === i18n.Messages['MUTUAL_GUILDS'];
+            console.log(guildButton);
             console.log('FL - LABEL CHECKED')
             if (!check) return;
             console.log('FL - LABEL IS MUTUAL')
