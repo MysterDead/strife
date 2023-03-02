@@ -33,7 +33,7 @@ const UnpatchRelations = after('default', UserProfileSection, (ctx, component) =
             if (!storage.profileButton) return;
             const buttonCallback = () => {
                 console.log('click');
-                console.log(UserProfileRelations);
+                console.log(UserProfileRelations.props.user);
             };
             buttons.push((<UserProfileRow
                 label={'Invite as Friend Invite'}
