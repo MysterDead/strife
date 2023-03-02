@@ -6,18 +6,19 @@ import {after, before} from "@vendetta/patcher";
 import {Forms, General} from "@vendetta/ui/components";
 import {getAssetByID} from "@vendetta/ui/assets";
 import {findInReactTree} from "@vendetta/utils";
-const { getChannels } = findByProps("getChannels");
+const ChannelStore = findByProps("getChannel", "getDMFromUserId");
 
 storage.profileButton ??=false;
 storage.debug ??=false;
 
-const UserProfileRelations = findByDisplayName("UserProfileSection", false);
+const UserProfileSection = findByDisplayName("UserProfileSection", false);
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 const Icon = findByDisplayName("Icon")
 const UserProfileRow = findByDisplayName("UserProfileRow")
+const UserProfileRelations = findByDisplayName("UserProfileRelations")
 
 
-const UnpatchRelations = after('default', UserProfileRelations, (ctx, component) => {
+const UnpatchRelations = after('default', UserProfileSection, (ctx, component) => {
     const { props } = component;
     const { children } = props;
     if(children === undefined) return;
@@ -28,11 +29,11 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
             const guildButton = buttons[1]?.props;
             if(guildButton === undefined) return;
             const check = guildButton?.label === i18n.Messages['MUTUAL_GUILDS'];
-            console.log(buttons);
             if (!check) return;
             if (!storage.profileButton) return;
             const buttonCallback = () => {
-                console.log(getChannels());
+                console.log('click');
+                console.log(UserProfileRelations);
             };
             buttons.push((<UserProfileRow
                 label={'Invite as Friend Invite'}
