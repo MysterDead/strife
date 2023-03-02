@@ -2,7 +2,7 @@ import Settings from "./components/Settings";
 import { storage } from "@vendetta/plugin";
 import {find, findByDisplayName, findByProps} from "@vendetta/metro";
 import {i18n, ReactNative as RN} from '@vendetta/metro/common';
-import {after} from "@vendetta/patcher";
+import {after, before} from "@vendetta/patcher";
 import {Forms, General} from "@vendetta/ui/components";
 import {getAssetByID} from "@vendetta/ui/assets";
 import {findInReactTree} from "@vendetta/utils";
@@ -18,20 +18,8 @@ const Icon = findByDisplayName("Icon")
 const TouchableHitBox = findByDisplayName("Icon");
 const UserProfileRow = findByDisplayName("UserProfileRow")
 
-const UnpatchedGenButton = after('default', HitBox, (ctx, component) => {
-    const { props } = component;
-    const { children } = props;
-    if (!storage.friendsTabButton) return;
-    console.log(props);
-    console.log(children);
-    try {
-        let buttons = children[0]?.props?.children[0]?.props.children[0]?.props.children;
-        console.log(buttons);
-    }catch (e){
-        return;
-    }
-    // @ts-ignore
-    ctx.result = [component]
+const UnpatchedGenButton = before('render', HitBox.type.prototype, (ctx) => {
+    console.log(ctx);
 });
 
 const UnpatchRelations = after('default', UserProfileRelations, (ctx, component) => {
