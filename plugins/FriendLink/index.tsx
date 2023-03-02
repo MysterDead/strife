@@ -8,19 +8,13 @@ import {getAssetByID} from "@vendetta/ui/assets";
 import {findInReactTree} from "@vendetta/utils";
 
 storage.profileButton ??=false;
-storage.friendsTabButton ??=false;
 storage.debug ??=false;
 
 const UserProfileRelations = findByDisplayName("UserProfileSection", false);
-const HitBox = findByDisplayName("AnimatedComponentWrapper", false);
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 const Icon = findByDisplayName("Icon")
-const TouchableHitBox = findByDisplayName("Icon");
 const UserProfileRow = findByDisplayName("UserProfileRow")
 
-const UnpatchedGenButton = before('render', HitBox.type.prototype, (ctx) => {
-    console.log(ctx);
-});
 
 const UnpatchRelations = after('default', UserProfileRelations, (ctx, component) => {
     const { props } = component;
@@ -40,9 +34,9 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
                 LazyActionSheet.hideActionSheet();
             };
             buttons.push((<UserProfileRow
-                label={'Send Friend Invite link'}
+                label={'Invite as Friend Invite'}
                 onPress={buttonCallback}
-                trailing={<Icon source={105} size={'medium'} disableColor={true}/>}
+                trailing={<Icon source={411} size={'medium'} disableColor={true}/>}
             />));
         }
     }catch (e){
@@ -58,7 +52,6 @@ export default {
     onUnload: () => {
         console.log("Goodbye, world.");
         UnpatchRelations();
-        UnpatchedGenButton();
     },
     settings: Settings,
 }
