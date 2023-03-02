@@ -12,13 +12,15 @@ storage.profileButton ??=false;
 storage.debug ??=false;
 
 const UserProfileSection = findByDisplayName("UserProfileSection", false);
+const UserProfileRelations = findByDisplayName("UserProfileRelations", false);
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 const Icon = findByDisplayName("Icon")
 const UserProfileRow = findByDisplayName("UserProfileRow")
 
 
-const UnpatchRelations = after('default', UserProfileSection, (ctx, component) => {
-    const { props } = component;
+const UnpatchRelations = instead('default', UserProfileSection, (ctx) => {
+    // @ts-ignore
+    const { props } = ctx;
     console.log(props);
     const { children } = props;
     if(children === undefined) return;
