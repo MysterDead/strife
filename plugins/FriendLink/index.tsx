@@ -19,6 +19,7 @@ const UserProfileRow = findByDisplayName("UserProfileRow")
 
 const UnpatchRelations = after('default', UserProfileSection, (ctx, component) => {
     const { props } = component;
+    console.log(props);
     const { children } = props;
     if(children === undefined) return;
     try {
@@ -32,10 +33,6 @@ const UnpatchRelations = after('default', UserProfileSection, (ctx, component) =
             if (!storage.profileButton) return;
             const buttonCallback = () => {
                 console.log('click');
-                const UserProfileRelations = findByDisplayName("UserProfileRelations", false)
-                const UserProfileRelationsW = findByDisplayName("UserProfileRelations")
-                console.log(UserProfileRelations?.props?.user?.username);
-                console.log(UserProfileRelationsW?.props?.user?.username);
             };
             buttons.push((<UserProfileRow
                 label={'Invite as Friend Invite'}
