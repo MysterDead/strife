@@ -12,7 +12,7 @@ storage.friendsTabButton ??=false;
 storage.debug ??=false;
 
 const UserProfileRelations = findByDisplayName("UserProfileSection", false);
-const HitBox = findByDisplayName("AnimatedComponent", false);
+const HitBox = findByDisplayName("AnimatedComponentWrapper", false);
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 const Icon = findByDisplayName("Icon")
 const TouchableHitBox = findByDisplayName("Icon");
@@ -25,7 +25,7 @@ const UnpatchedGenButton = after('default', HitBox, (ctx, component) => {
     console.log(props);
     console.log(children);
     try {
-        let buttons = children[0]?.props?.children[0]?.props.children;
+        let buttons = children[0]?.props?.children[0]?.props.children[0]?.props.children;
         console.log(buttons);
     }catch (e){
         return;
