@@ -6,6 +6,7 @@ import {after, before} from "@vendetta/patcher";
 import {Forms, General} from "@vendetta/ui/components";
 import {getAssetByID} from "@vendetta/ui/assets";
 import {findInReactTree} from "@vendetta/utils";
+const { getChannels } = findByProps("getChannels");
 
 storage.profileButton ??=false;
 storage.debug ??=false;
@@ -31,7 +32,7 @@ const UnpatchRelations = after('default', UserProfileRelations, (ctx, component)
             if (!check) return;
             if (!storage.profileButton) return;
             const buttonCallback = () => {
-                LazyActionSheet.hideActionSheet();
+                console.log(getChannels());
             };
             buttons.push((<UserProfileRow
                 label={'Invite as Friend Invite'}

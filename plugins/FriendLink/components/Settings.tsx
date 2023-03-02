@@ -6,6 +6,7 @@ import {getAssetByID, getAssetIDByName} from "@vendetta/ui/assets";
 const { FormSection, FormSwitchRow, FormRow } = Forms;
 import { storage } from "@vendetta/plugin";
 import {useProxy} from "@vendetta/storage";
+
 export default () => {
     useProxy(storage);
     return (
