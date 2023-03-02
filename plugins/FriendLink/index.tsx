@@ -2,7 +2,7 @@ import Settings from "./components/Settings";
 import { storage } from "@vendetta/plugin";
 import {find, findByDisplayName, findByProps} from "@vendetta/metro";
 import {i18n, ReactNative as RN} from '@vendetta/metro/common';
-import {after, before} from "@vendetta/patcher";
+import {after, before, instead} from "@vendetta/patcher";
 import {Forms, General} from "@vendetta/ui/components";
 import {getAssetByID} from "@vendetta/ui/assets";
 import {findInReactTree} from "@vendetta/utils";
