@@ -15,7 +15,7 @@ const UserProfileSection = findByDisplayName("UserProfileSection", false);
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 const Icon = findByDisplayName("Icon")
 const UserProfileRow = findByDisplayName("UserProfileRow")
-const UserProfileRelations = findByDisplayName("UserProfileRelations")
+const UserProfileRelations = findByDisplayName("UserProfileRelations", false)
 
 
 const UnpatchRelations = after('default', UserProfileSection, (ctx, component) => {
@@ -33,7 +33,7 @@ const UnpatchRelations = after('default', UserProfileSection, (ctx, component) =
             if (!storage.profileButton) return;
             const buttonCallback = () => {
                 console.log('click');
-                console.log(UserProfileRelations.props.user);
+                console.log(UserProfileRelations.props);
             };
             buttons.push((<UserProfileRow
                 label={'Invite as Friend Invite'}
